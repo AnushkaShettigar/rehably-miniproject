@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments - Rehably</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #839958;
+            --secondary: #d39683;
+            --text: #0a3323;
+            --bg: #f7f4d5;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+            background: var(--white);
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 12px 28px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .nav-btn:hover {
+            background: #6b8045;
+        }
+
+        .page-header {
+            background: url('image.jpg') center/cover no-repeat;
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: #f5f0de;
+        }
+
+        .footer {
+            padding: 60px;
+            background: var(--text);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .booked-appointments {
+            max-width: 1050px;
+            margin: 0 auto 100px;
+            padding: 70px 30px 0;
+        }
+
+        .booked-appointments h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 34px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .appointment-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .appointment-card {
+            padding: 26px;
+            background: var(--bg);
+            border-left: 4px solid var(--secondary);
+            min-height: 190px;
+            position: relative;
+        }
+
+        .appointment-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .appointment-card p {
+            margin: 4px 0;
+            font-size: 14px;
+        }
+
+        .appointment-card .appointment-doctor {
+            color: #557060;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .appointment-status {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 5px 9px;
+            background: var(--primary);
+            color: var(--white);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+        }
+
+        .empty-appointments {
+            text-align: center;
+            color: #557060;
+        }
+
+        @media (max-width: 800px) {
+            .appointment-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Rehably</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="appointments.html">Appointments</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="nav-btn">Book Now</button>
+    </nav>
+
+    <div class="page-header">
+        <h1>Book an Appointment</h1>
+        <p style="color: #f5f0de;">Schedule your physiotherapy session</p>
+    </div>
+
+    <section class="booked-appointments">
+        <h2>Your Appointments</h2>
+        <div id="appointment-list" class="appointment-list"></div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Rehably. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const appointmentList = document.getElementById('appointment-list');
+        const appointmentStorageKey = 'rehablyAppointments';
+        const sampleAppointments = [
+            { doctor: 'Dr. Anika Sharma', service: 'Orthopedic Rehabilitation', name: 'Maya Patel', email: 'maya@example.com', date: '2026-09-21', time: '10:00' },
+            { doctor: 'Dr. Anika Sharma', service: 'Orthopedic Rehabilitation', name: 'Maya Patel', email: 'maya@example.com', date: '2026-09-28', time: '10:00' },
+            { doctor: 'Dr. Anika Sharma', service: 'Orthopedic Rehabilitation', name: 'Maya Patel', email: 'maya@example.com', date: '2026-10-05', time: '10:00' }
+        ];
+
+        function renderAppointments() {
+            if (!localStorage.getItem(appointmentStorageKey)) {
+                localStorage.setItem(appointmentStorageKey, JSON.stringify(sampleAppointments));
+            }
+            const appointments = JSON.parse(localStorage.getItem(appointmentStorageKey));
+
+            if (!appointments.length) {
+                appointmentList.innerHTML = '<p class="empty-appointments">Your booked appointments will appear here.</p>';
+                return;
+            }
+
+            appointmentList.innerHTML = appointments.map((appointment) => `
+                <article class="appointment-card">
+                    <h3>${appointment.service}</h3>
+                    <p class="appointment-doctor">With ${appointment.doctor || 'your Rehably therapist'}</p>
+                    <p><strong>${appointment.name}</strong>${appointment.email ? ` &middot; ${appointment.email}` : ''}</p>
+                    <p>${appointment.date} at ${appointment.time}</p>
+                    <span class="appointment-status">Confirmed</span>
+                </article>
+            `).join('');
+        }
+
+        renderAppointments();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rehably - Professional Physiotherapy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #839958;
+            --secondary: #d39683;
+            --text: #0a3323;
+            --bg: #f7f4d5;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+            background: var(--white);
+            position: relative;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 12px 28px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .nav-btn:hover {
+            background: #6b8045;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 90vh;
+            background: url('image.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 60px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            color: var(--bg);
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: var(--bg);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+
+        .hero-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 16px 40px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-btn:hover {
+            background: #6b8045;
+        }
+
+        /* WHY WE DO IT */
+        .why-section {
+            padding: 100px 60px;
+            background: var(--white);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            color: var(--text);
+            margin-bottom: 60px;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .why-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .why-text h3 {
+            font-size: 28px;
+            color: var(--text);
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .why-text p {
+            font-size: 16px;
+            color: var(--text);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .why-benefits {
+            list-style: none;
+        }
+
+        .why-benefits li {
+            font-size: 15px;
+            color: var(--text);
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .why-benefits li:before {
+            content: "▪";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-size: 18px;
+        }
+
+        .why-image {
+            width: 100%;
+            height: 400px;
+            background: url('image2.jpg') center/cover no-repeat;
+            border: 2px solid var(--primary);
+        }
+
+        /* SERVICES SECTION */
+        .services-section {
+            padding: 100px 60px;
+            background: var(--bg);
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .service-card p {
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .service-card:hover h3,
+        .service-card:hover p {
+            color: var(--white);
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 60px;
+            background: var(--text);
+            color: var(--white);
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 50px;
+            text-align: left;
+        }
+
+        .footer h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--bg);
+            margin-bottom: 16px;
+        }
+
+        .footer p,
+        .footer a {
+            font-size: 14px;
+            color: #e7ead6;
+            line-height: 1.8;
+        }
+
+        .footer a {
+            display: block;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 35px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 30px;
+                height: 60px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 42px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .why-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                padding: 30px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">Rehably</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="appointments.html">Appointments</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="nav-btn">Book Now</button>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Professional Physiotherapy Care</h1>
+            <p>Recover faster, live better. Expert physiotherapy services designed for your wellness journey.</p>
+            <button class="hero-btn">Get Started</button>
+        </div>
+    </section>
+
+    <!-- WHY WE DO IT SECTION -->
+    <section class="why-section">
+        <h2 class="section-title">Why We Do It</h2>
+        <div class="why-content">
+            <div class="why-text">
+                <h3>Your Recovery Matters</h3>
+                <p>We believe in delivering comprehensive, personalized physiotherapy that helps you return to the activities you love.</p>
+                <ul class="why-benefits">
+                    <li>Evidence-based treatment methods</li>
+                    <li>Certified professional therapists</li>
+                    <li>Personalized recovery plans</li>
+                    <li>Holistic wellness approach</li>
+                </ul>
+            </div>
+            <div class="why-image"></div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services-section">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Orthopedic Rehabilitation</h3>
+                <p>Specialized care for fractures, joint replacements, and sports injuries. Get back to your active lifestyle.</p>
+            </div>
+            <div class="service-card">
+                <h3>Post-Surgery Recovery</h3>
+                <p>Expert guidance following surgical procedures. Our therapists ensure optimal healing and strength restoration.</p>
+            </div>
+            <div class="service-card">
+                <h3>Chronic Pain Management</h3>
+                <p>Long-term pain relief strategies tailored to your condition. Evidence-based techniques for lasting results.</p>
+            </div>
+            <div class="service-card">
+                <h3>Sports Injury Treatment</h3>
+                <p>Focused recovery plans to help athletes rebuild strength, mobility, and confidence after an injury.</p>
+            </div>
+            <div class="service-card">
+                <h3>Neurological Rehabilitation</h3>
+                <p>Specialist support for stroke recovery, Parkinson's, and other neurological conditions.</p>
+            </div>
+            <div class="service-card">
+                <h3>Home Visits</h3>
+                <p>Professional physiotherapy in your home for convenient, comfortable care when you need it most.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <h3>Rehably</h3>
+                <p>Professional physiotherapy care built around your recovery, mobility, and everyday wellbeing.</p>
+            </div>
+            <div>
+                <h3>Explore</h3>
+                <a href="about.html">About Rehably</a>
+                <a href="services.html">Our Services</a>
+                <a href="appointments.html">Book an Appointment</a>
+            </div>
+            <div>
+                <h3>Visit Us</h3>
+                <p>123 Wellness Street<br>New Delhi 110001, India</p>
+                <p>+91 (11) 4567-8900<br>info@rehably.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Rehably. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

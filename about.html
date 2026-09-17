@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Rehably</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #839958;
+            --secondary: #d39683;
+            --text: #0a3323;
+            --bg: #f7f4d5;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+            background: var(--white);
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 12px 28px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .nav-btn:hover {
+            background: #6b8045;
+        }
+
+        .page-header {
+            background: url('image.jpg') center/cover no-repeat;
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: #f5f0de;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: #f5f0de;
+        }
+
+        .content {
+            padding: 80px 60px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: var(--text);
+            margin: 40px 0 20px 0;
+            font-weight: 700;
+        }
+
+        .content p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .footer {
+            padding: 60px;
+            background: var(--text);
+            color: var(--white);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Rehably</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="appointments.html">Appointments</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="nav-btn">Book Now</button>
+    </nav>
+
+    <div class="page-header">
+        <h1>About Rehably</h1>
+        <p style="color: #f5f0de;">Committed to your recovery and wellness</p>
+    </div>
+
+    <div class="content">
+        <h2>Our Mission</h2>
+        <p>At Rehably, we are dedicated to providing world-class physiotherapy services that empower individuals to recover, strengthen, and reclaim their quality of life.</p>
+
+        <h2>Our Team</h2>
+        <p>Our team consists of certified physiotherapists with extensive experience in orthopedic rehabilitation, post-surgical recovery, and chronic pain management. We combine expertise with compassion to deliver personalized care.</p>
+
+        <h2>Our Approach</h2>
+        <p>We believe in evidence-based treatment methods tailored to each individual's unique needs. Our holistic approach addresses not just symptoms, but the root cause of your condition, ensuring lasting results.</p>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Rehably. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
