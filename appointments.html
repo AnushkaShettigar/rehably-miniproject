@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Appointments - Rehably</title>
+    <title>Appointments - CareBridge</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -173,7 +173,7 @@
 <body>
 
     <nav class="navbar">
-        <div class="logo">Rehably</div>
+        <div class="logo">CareBridge</div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -195,12 +195,12 @@
     </section>
 
     <footer class="footer">
-        <p>&copy; 2024 Rehably. All rights reserved.</p>
+        <p>&copy; 2024 CareBridge. All rights reserved.</p>
     </footer>
 
     <script>
         const appointmentList = document.getElementById('appointment-list');
-        const appointmentStorageKey = 'rehablyAppointments';
+        const appointmentStorageKey = 'carebridgeAppointments';
         const sampleAppointments = [
             { doctor: 'Dr. Anika Sharma', service: 'Orthopedic Rehabilitation', name: 'Maya Patel', email: 'maya@example.com', date: '2026-09-21', time: '10:00' },
             { doctor: 'Dr. Anika Sharma', service: 'Orthopedic Rehabilitation', name: 'Maya Patel', email: 'maya@example.com', date: '2026-09-28', time: '10:00' },
@@ -221,7 +221,7 @@
             appointmentList.innerHTML = appointments.map((appointment) => `
                 <article class="appointment-card">
                     <h3>${appointment.service}</h3>
-                    <p class="appointment-doctor">With ${appointment.doctor || 'your Rehably therapist'}</p>
+                    <p class="appointment-doctor">With ${appointment.doctor || 'your CareBridge therapist'}</p>
                     <p><strong>${appointment.name}</strong>${appointment.email ? ` &middot; ${appointment.email}` : ''}</p>
                     <p>${appointment.date} at ${appointment.time}</p>
                     <span class="appointment-status">Confirmed</span>

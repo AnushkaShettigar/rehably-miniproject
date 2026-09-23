@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services - Rehably</title>
+    <title>Services - CareBridge</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -342,7 +342,7 @@
 <body>
 
     <nav class="navbar">
-        <div class="logo">Rehably</div>
+        <div class="logo">CareBridge</div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -422,7 +422,7 @@
     </div>
 
     <footer class="footer">
-        <p>&copy; 2024 Rehably. All rights reserved.</p>
+        <p>&copy; 2024 CareBridge. All rights reserved.</p>
     </footer>
 
     <div class="therapist-modal" id="therapist-modal" role="dialog" aria-modal="true" aria-labelledby="modal-name">
@@ -535,7 +535,7 @@
 
         bookingForm.addEventListener('submit', (event) => {
             event.preventDefault();
-            const appointments = JSON.parse(localStorage.getItem('rehablyAppointments') || '[]');
+            const appointments = JSON.parse(localStorage.getItem('carebridgeAppointments') || '[]');
             appointments.push({
                 doctor: selectedTherapist.name,
                 service: selectedTherapist.role.split(' &middot; ')[1],
@@ -543,7 +543,7 @@
                 date: document.getElementById('booking-date').value,
                 time: document.getElementById('booking-time').value
             });
-            localStorage.setItem('rehablyAppointments', JSON.stringify(appointments));
+            localStorage.setItem('carebridgeAppointments', JSON.stringify(appointments));
             bookingForm.reset();
             bookingForm.classList.remove('visible');
             bookingSuccess.classList.add('visible');
