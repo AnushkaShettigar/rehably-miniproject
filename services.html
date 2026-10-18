@@ -3,561 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services - CareBridge</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <title>Doctor Profiles - CareBridge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #839958;
-            --secondary: #d39683;
-            --text: #0a3323;
-            --bg: #f7f4d5;
-            --white: #ffffff;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text);
-            background: var(--white);
-            line-height: 1.6;
-        }
-
-        .navbar {
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 60px;
-            background: var(--white);
-            border-bottom: 3px solid var(--secondary);
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--primary);
-            letter-spacing: -1px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 50px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text);
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            transition: color 0.3s ease;
-            text-transform: uppercase;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-btn {
-            background: var(--primary);
-            color: var(--white);
-            border: none;
-            padding: 12px 28px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
-
-        .nav-btn:hover {
-            background: #6b8045;
-        }
-
-        .page-header {
-            background: url('image.jpg') center/cover no-repeat;
-            padding: 80px 60px;
-            text-align: center;
-        }
-
-        .page-header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 52px;
-            margin-bottom: 20px;
-            font-weight: 700;
-            letter-spacing: -1px;
-            color: #f5f0de;
-        }
-
-        .services-list {
-            padding: 80px 60px 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .services-intro {
-            max-width: 650px;
-            margin: 0 auto 45px;
-            text-align: center;
-        }
-
-        .therapist-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 28px;
-        }
-
-        .therapist-card {
-            padding: 0 0 24px;
-            background: var(--bg);
-            border: 2px solid transparent;
-            cursor: pointer;
-            text-align: left;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .therapist-card:hover,
-        .therapist-card.active {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        .therapist-card img {
-            display: block;
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            filter: saturate(0.8);
-        }
-
-        .therapist-card-content {
-            padding: 20px 22px 0;
-        }
-
-        .therapist-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            color: var(--text);
-            margin-bottom: 6px;
-            font-weight: 700;
-        }
-
-        .therapist-specialty {
-            color: #557060;
-            font-size: 14px;
-            margin-bottom: 12px;
-        }
-
-        .therapist-meta {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .therapist-rating {
-            color: #a56d4d;
-        }
-
-        .therapist-badge {
-            display: inline-block;
-            margin-top: 14px;
-            padding: 5px 9px;
-            background: var(--secondary);
-            color: var(--white);
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.6px;
-            text-transform: uppercase;
-        }
-
-        .therapist-details {
-            display: none;
-        }
-
-        .therapist-modal {
-            position: fixed;
-            inset: 0;
-            z-index: 10;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 30px;
-            background: rgba(10, 51, 35, 0.62);
-        }
-
-        .therapist-modal.open {
-            display: flex;
-        }
-
-        .modal-card {
-            width: min(680px, 100%);
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 38px;
-            background: var(--white);
-            border-top: 5px solid var(--primary);
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 18px;
-            border: 0;
-            background: transparent;
-            color: var(--text);
-            font-size: 28px;
-            cursor: pointer;
-        }
-
-        .modal-card .therapist-details {
-            display: block;
-            margin: 0;
-            padding: 0;
-            border: 0;
-            box-shadow: none;
-        }
-
-        .therapist-details h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            margin-bottom: 8px;
-        }
-
-        .therapist-details h3 {
-            margin: 22px 0 8px;
-            font-size: 15px;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            color: var(--primary);
-        }
-
-        .therapist-details p {
-            font-size: 15px;
-            line-height: 1.8;
-        }
-
-        .modal-actions {
-            display: flex;
-            gap: 14px;
-            margin-top: 28px;
-        }
-
-        .modal-button {
-            border: 0;
-            padding: 13px 20px;
-            background: var(--primary);
-            color: var(--white);
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .modal-button.secondary {
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .booking-form {
-            display: none;
-            margin-top: 25px;
-            padding-top: 24px;
-            border-top: 1px solid #dfe4d0;
-        }
-
-        .booking-form.visible {
-            display: block;
-        }
-
-        .booking-form label {
-            display: block;
-            margin: 15px 0 7px;
-            color: var(--text);
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.6px;
-            text-transform: uppercase;
-        }
-
-        .booking-form input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid var(--primary);
-            background: var(--bg);
-            color: var(--text);
-            font: inherit;
-        }
-
-        .booking-form button {
-            margin-top: 20px;
-        }
-
-        .booking-success {
-            display: none;
-            margin-top: 22px;
-            padding: 14px;
-            background: var(--bg);
-            color: var(--text);
-            font-size: 14px;
-        }
-
-        .booking-success.visible {
-            display: block;
-        }
-
-        @media (max-width: 900px) {
-            .therapist-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 600px) {
-            .therapist-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .modal-card {
-                padding: 32px 24px 24px;
-            }
-        }
-
-        .footer {
-            padding: 60px;
-            background: var(--text);
-            color: var(--white);
-            text-align: center;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary: #839958; --secondary: #d39683; --text: #0a3323; --bg: #f7f4d5; --white: #ffffff; }
+        body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); line-height: 1.6; }
+        .navbar { height: 80px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: var(--white); border-bottom: 3px solid var(--secondary); }
+        .logo { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: var(--primary); letter-spacing: -1px; }
+        .nav-links { display: flex; gap: 50px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text); font-size: 14px; font-weight: 600; letter-spacing: 0.5px; transition: color 0.3s ease; text-transform: uppercase; }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-btn { background: var(--primary); color: var(--white); border: none; padding: 12px 28px; font-size: 13px; font-weight: 600; cursor: pointer; text-transform: uppercase; }
+        .nav-btn:hover { background: #6b8045; }
+        .page-header { background: url('image.jpg') center/cover no-repeat; padding: 80px 60px; text-align: center; }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: 52px; margin-bottom: 20px; font-weight: 700; letter-spacing: -1px; color: #f5f0de; }
+        .page-header p { color: #f5f0de; font-size: 18px; }
+        .services-list { padding: 80px 60px 40px; max-width: 1200px; margin: 0 auto; }
+        .services-intro { max-width: 700px; margin: 0 auto 45px; text-align: center; }
+        .services-intro h2 { font-family: 'Playfair Display', serif; font-size: 44px; margin-bottom: 12px; }
+        .therapist-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; }
+        .therapist-card { background: var(--bg); border: 3px solid transparent; padding: 0 0 22px; min-height: 440px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 10px 18px rgba(10,51,35,0.08); }
+        .therapist-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 14px 20px rgba(10,51,35,0.12); }
+        .therapist-image { height: 220px; background-image: linear-gradient(135deg, rgba(131,153,88,0.8), rgba(211,150,131,0.72)), url('image2.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 28px; font-weight: 700; }
+        .therapist-card-content { padding: 18px 18px 0; }
+        .therapist-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 7px; }
+        .therapist-specialty { color: #557060; font-size: 13px; margin-bottom: 10px; }
+        .therapist-description { font-size: 13px; line-height: 1.7; margin-bottom: 12px; }
+        .therapist-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+        .therapist-tags span { background: rgba(131,153,88,0.12); color: var(--text); font-size: 11px; padding: 5px 8px; border-radius: 999px; }
+        .book-btn { width: 100%; background: var(--primary); color: var(--white); border: none; padding: 12px 18px; font-weight: 700; cursor: pointer; }
+        .book-btn:hover { background: #6b8045; }
+        .modal { position: fixed; inset: 0; display: none; place-items: center; background: rgba(10,51,35,0.7); z-index: 10; padding: 24px; }
+        .modal.show { display: grid; }
+        .modal-card { width: min(620px, 100%); background: var(--white); padding: 32px; border-top: 5px solid var(--secondary); }
+        .modal-card h2 { font-family: 'Playfair Display', serif; font-size: 34px; margin-bottom: 18px; }
+        .modal-card form { display: grid; gap: 15px; }
+        .modal-card label { font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; }
+        .modal-card input, .modal-card textarea, .modal-card select { width: 100%; padding: 12px 14px; border: 1px solid #dfe2d1; background: #f9f9f5; font: inherit; }
+        .modal-card textarea { min-height: 110px; resize: vertical; }
+        .modal-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 10px; }
+        .cancel-btn, .submit-btn { border: none; padding: 12px 18px; font-weight: 700; cursor: pointer; }
+        .cancel-btn { background: #e7ece2; color: var(--text); }
+        .submit-btn { background: var(--primary); color: var(--white); }
+        .success-message { display: none; margin-top: 16px; padding: 12px 14px; background: #edf7ee; border: 1px solid #bad5b9; color: #1f4b2a; font-weight: 600; }
+        @media (max-width: 1040px) { .therapist-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+        @media (max-width: 720px) { .navbar { padding: 0 30px; height: 60px; } .nav-links { gap: 18px; } .nav-links a { font-size: 12px; } .therapist-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 520px) { .therapist-grid { grid-template-columns: 1fr; } .page-header { padding: 70px 20px; } }
     </style>
 </head>
 <body>
-
     <nav class="navbar">
         <div class="logo">CareBridge</div>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="patient-home.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="appointments.html">Appointments</a></li>
+            <li><a href="resources.html">Exercises &amp; Equipment</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
-        <button class="nav-btn">Book Now</button>
+        <button class="nav-btn" type="button" onclick="window.location.href='appointments.html'">Book Now</button>
     </nav>
-
-    <div class="page-header">
-        <h1>Our Services</h1>
-        <p style="color: #f5f0de;">Comprehensive physiotherapy solutions for your needs</p>
-    </div>
-
-    <div class="services-list">
+    <header class="page-header">
+        <h1>Meet Our Specialists</h1>
+        <p>Our multidisciplinary team supports recovery, mobility and confidence at every stage.</p>
+    </header>
+    <section class="services-list">
         <div class="services-intro">
-            <p>Meet the specialists who make every recovery plan personal. Select a therapist to see their background, approach, and patient feedback.</p>
+            <h2>Our Expert Doctors</h2>
+            <p>Explore physicians tailored to orthopaedics, sports rehab, neurological care, paediatric therapy and more.</p>
         </div>
+        <div id="doctorGrid" class="therapist-grid"></div>
+    </section>
 
-        <div class="therapist-grid">
-            <article class="therapist-card active" data-therapist="anika" tabindex="0">
-                <img src="image2.jpg" alt="Dr. Anika Sharma">
-                <div class="therapist-card-content">
-                    <h3>Dr. Anika Sharma</h3>
-                    <p class="therapist-specialty">Orthopedic Rehabilitation</p>
-                    <div class="therapist-meta"><span>★★★★★</span><span class="therapist-rating">4.9 (128)</span></div>
-                    <span class="therapist-badge">Sports &amp; joints</span>
-                </div>
-            </article>
-            <article class="therapist-card" data-therapist="rohan" tabindex="0">
-                <img src="image.jpg" alt="Dr. Rohan Mehta">
-                <div class="therapist-card-content">
-                    <h3>Dr. Rohan Mehta</h3>
-                    <p class="therapist-specialty">Neurological Rehabilitation</p>
-                    <div class="therapist-meta"><span>★★★★★</span><span class="therapist-rating">4.8 (96)</span></div>
-                    <span class="therapist-badge">Neuro care</span>
-                </div>
-            </article>
-            <article class="therapist-card" data-therapist="meera" tabindex="0">
-                <img src="image2.jpg" alt="Dr. Meera Kapoor">
-                <div class="therapist-card-content">
-                    <h3>Dr. Meera Kapoor</h3>
-                    <p class="therapist-specialty">Pain &amp; Post-Surgery Care</p>
-                    <div class="therapist-meta"><span>★★★★★</span><span class="therapist-rating">4.9 (112)</span></div>
-                    <span class="therapist-badge">Pain relief</span>
-                </div>
-            </article>
-            <article class="therapist-card" data-therapist="kabir" tabindex="0">
-                <img src="image.jpg" alt="Dr. Kabir Singh">
-                <div class="therapist-card-content">
-                    <h3>Dr. Kabir Singh</h3>
-                    <p class="therapist-specialty">Sports Injury Treatment</p>
-                    <div class="therapist-meta"><span>★★★★★</span><span class="therapist-rating">4.8 (87)</span></div>
-                    <span class="therapist-badge">Performance</span>
-                </div>
-            </article>
-            <article class="therapist-card" data-therapist="alia" tabindex="0">
-                <img src="image2.jpg" alt="Dr. Alia Fernandes">
-                <div class="therapist-card-content">
-                    <h3>Dr. Alia Fernandes</h3>
-                    <p class="therapist-specialty">Post-Surgery Recovery</p>
-                    <div class="therapist-meta"><span>★★★★★</span><span class="therapist-rating">4.9 (104)</span></div>
-                    <span class="therapist-badge">Recovery care</span>
-                </div>
-            </article>
-            <article class="therapist-card" data-therapist="dev" tabindex="0">
-                <img src="image.jpg" alt="Dr. Dev Malhotra">
-                <div class="therapist-card-content">
-                    <h3>Dr. Dev Malhotra</h3>
-                    <p class="therapist-specialty">Home Visit Physiotherapy</p>
-                    <div class="therapist-meta"><span>★★★★★</span><span class="therapist-rating">4.7 (73)</span></div>
-                    <span class="therapist-badge">Home visits</span>
-                </div>
-            </article>
-        </div>
-    </div>
-
-    <footer class="footer">
-        <p>&copy; 2024 CareBridge. All rights reserved.</p>
-    </footer>
-
-    <div class="therapist-modal" id="therapist-modal" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+    <div id="bookingModal" class="modal" aria-modal="true" role="dialog">
         <div class="modal-card">
-            <button class="modal-close" id="modal-close" aria-label="Close therapist details">&times;</button>
-            <div class="therapist-details" id="therapist-details"></div>
-            <div class="modal-actions">
-                <button class="modal-button" id="book-therapist">Book Now</button>
-                <button class="modal-button secondary" id="close-details">Close</button>
-            </div>
-            <form class="booking-form" id="booking-form">
-                <p>Choose a date and time for your session.</p>
-                <label for="booking-date">Date</label>
-                <input type="date" id="booking-date" required>
-                <label for="booking-time">Time</label>
-                <input type="time" id="booking-time" required>
-                <button class="modal-button" type="submit">Confirm Appointment</button>
+            <h2 id="modalDoctorName">Book a consultation</h2>
+            <form id="bookingForm">
+                <div>
+                    <label for="patientName">Patient Name</label>
+                    <input id="patientName" name="patientName" type="text" placeholder="Your full name" required>
+                </div>
+                <div>
+                    <label for="consultationReason">Consultation Reason</label>
+                    <textarea id="consultationReason" name="consultationReason" placeholder="Describe your condition or goal" required></textarea>
+                </div>
+                <div>
+                    <label for="preferredDate">Preferred Date</label>
+                    <input id="preferredDate" name="preferredDate" type="date">
+                </div>
+                <div>
+                    <label for="preferredTime">Preferred Time</label>
+                    <input id="preferredTime" name="preferredTime" type="time">
+                </div>
+                <div>
+                    <label for="notes">Additional Notes</label>
+                    <textarea id="notes" name="notes" placeholder="Share any relevant symptoms, goals or concerns"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="cancel-btn" id="cancelBooking">Cancel</button>
+                    <button type="submit" class="submit-btn">Submit Request</button>
+                </div>
+                <div id="successMessage" class="success-message">Appointment request submitted successfully.</div>
             </form>
-            <p class="booking-success" id="booking-success">Appointment confirmed. You can view it on the Appointments page.</p>
         </div>
     </div>
 
     <script>
-        const therapistDetails = {
-            anika: {
-                name: 'Dr. Anika Sharma',
-                role: 'Senior Physiotherapist &middot; Orthopedic Rehabilitation',
-                education: 'Master of Physiotherapy, AIIMS New Delhi. Certified in sports rehabilitation and manual therapy.',
-                about: 'Anika creates practical, progressive plans for joint pain, fractures, and sports injuries, helping patients return to the movement they enjoy.',
-                review: '&ldquo;Clear guidance, thoughtful care, and a recovery plan I could actually follow.&rdquo; &mdash; Priya S.'
-            },
-            rohan: {
-                name: 'Dr. Rohan Mehta',
-                role: 'Lead Physiotherapist &middot; Neurological Rehabilitation',
-                education: 'Master of Physiotherapy in Neurology, Manipal Academy. Certified in stroke and balance rehabilitation.',
-                about: 'Rohan combines patience, movement science, and family education to help patients build confidence after neurological changes.',
-                review: '&ldquo;Every session felt encouraging and purposeful. We could see progress week by week.&rdquo; &mdash; Amit K.'
-            },
-            meera: {
-                name: 'Dr. Meera Kapoor',
-                role: 'Physiotherapist &middot; Pain &amp; Post-Surgery Care',
-                education: 'Master of Physiotherapy, Jamia Millia Islamia. Certified in post-operative and chronic pain care.',
-                about: 'Meera helps patients understand their pain and recover after surgery with calm, evidence-based treatment and steady support.',
-                review: '&ldquo;The exercises were tailored to me, and the difference in my daily comfort has been remarkable.&rdquo; &mdash; Neha R.'
-            },
-            kabir: {
-                name: 'Dr. Kabir Singh',
-                role: 'Sports Physiotherapist &middot; Sports Injury Treatment',
-                education: 'Master of Sports Physiotherapy, SRM Institute. Certified in strength and conditioning.',
-                about: 'Kabir helps active people return to training with movement assessments, progressive loading, and practical performance plans.',
-                review: '&ldquo;Kabir gave me the confidence to return to running without rushing the process.&rdquo; &mdash; Arjun P.'
-            },
-            alia: {
-                name: 'Dr. Alia Fernandes',
-                role: 'Physiotherapist &middot; Post-Surgery Recovery',
-                education: 'Master of Physiotherapy, Manipal University. Certified in post-operative rehabilitation.',
-                about: 'Alia guides patients through the early stages of recovery with careful progressions that make each milestone feel achievable.',
-                review: '&ldquo;Attentive, precise, and reassuring from my first session through recovery.&rdquo; &mdash; Rhea M.'
-            },
-            dev: {
-                name: 'Dr. Dev Malhotra',
-                role: 'Physiotherapist &middot; Home Visit Physiotherapy',
-                education: 'Bachelor of Physiotherapy, Delhi University. Certified in geriatric and mobility care.',
-                about: 'Dev brings calm, professional care to patients at home, focusing on safe mobility and confidence in daily routines.',
-                review: '&ldquo;The home visits made consistent care possible for my father. The change has been wonderful.&rdquo; &mdash; Nisha T.'
+        const doctorGrid = document.getElementById('doctorGrid');
+        const bookingModal = document.getElementById('bookingModal');
+        const bookingForm = document.getElementById('bookingForm');
+        const successMessage = document.getElementById('successMessage');
+        const modalDoctorName = document.getElementById('modalDoctorName');
+        let selectedDoctor = null;
+
+        async function ensurePatientAccess() {
+            const response = await fetch('/api/auth/me', { credentials: 'include' });
+            if (!response.ok) {
+                window.location.href = 'index.html';
+                return false;
             }
-        };
-
-        const modal = document.getElementById('therapist-modal');
-        const detailsPanel = document.getElementById('therapist-details');
-        const bookingForm = document.getElementById('booking-form');
-        const bookingSuccess = document.getElementById('booking-success');
-        let selectedTherapist = null;
-
-        function closeModal() {
-            modal.classList.remove('open');
-            bookingForm.classList.remove('visible');
-            bookingSuccess.classList.remove('visible');
+            const user = await response.json();
+            if (user.role !== 'PATIENT') {
+                window.location.href = 'doctor-dashboard.html';
+                return false;
+            }
+            return true;
         }
 
-        document.querySelectorAll('.therapist-card').forEach((card) => {
-            const selectTherapist = () => {
-                selectedTherapist = therapistDetails[card.dataset.therapist];
-                detailsPanel.innerHTML = `
-                    <h2 id="modal-name">${selectedTherapist.name}</h2>
-                    <p>${selectedTherapist.role}</p>
-                    <h3>Education</h3>
-                    <p>${selectedTherapist.education}</p>
-                    <h3>About</h3>
-                    <p>${selectedTherapist.about}</p>
-                    <h3>Patient Reviews</h3>
-                    <p>${selectedTherapist.review}</p>
-                `;
-                modal.classList.add('open');
+        function renderDoctors(doctors) {
+            const orderedDoctors = [...doctors].sort((a, b) => {
+                if (a.doctorId === 'DOC001') return -1;
+                if (b.doctorId === 'DOC001') return 1;
+                return a.doctorId.localeCompare(b.doctorId);
+            });
+
+            doctorGrid.innerHTML = orderedDoctors.map((doctor) => `
+                <article class="therapist-card">
+                    <div class="therapist-image">${doctor.name.split(' ').slice(-1)[0].charAt(0)}${doctor.name.split(' ').slice(-1)[0].slice(1,2).toLowerCase()}</div>
+                    <div class="therapist-card-content">
+                        <h3>${doctor.name}</h3>
+                        <div class="therapist-specialty">${doctor.specialty}</div>
+                        <p class="therapist-description">${doctor.description}</p>
+                        <div class="therapist-tags">${(doctor.tags || []).slice(0, 3).map(tag => `<span>${tag}</span>`).join('')}</div>
+                        <button type="button" class="book-btn" data-doctor-id="${doctor.doctorId}">Book Appointment</button>
+                    </div>
+                </article>
+            `).join('');
+
+            document.querySelectorAll('.book-btn').forEach((button) => {
+                button.addEventListener('click', async () => {
+                    const doctorId = button.dataset.doctorId;
+                    const doctor = doctors.find(item => item.doctorId === doctorId);
+                    if (!doctor) return;
+                    selectedDoctor = doctor;
+                    modalDoctorName.textContent = `Book with ${doctor.name}`;
+                    bookingModal.classList.add('show');
+                    successMessage.style.display = 'none';
+                });
+            });
+        }
+
+        document.getElementById('cancelBooking').addEventListener('click', () => {
+            bookingModal.classList.remove('show');
+            bookingForm.reset();
+        });
+
+        bookingModal.addEventListener('click', (event) => {
+            if (event.target === bookingModal) {
+                bookingModal.classList.remove('show');
+                bookingForm.reset();
+            }
+        });
+
+        bookingForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            if (!selectedDoctor) return;
+
+            const payload = {
+                doctorId: selectedDoctor.doctorId,
+                doctorName: selectedDoctor.name,
+                specialty: selectedDoctor.specialty,
+                consultationReason: document.getElementById('consultationReason').value,
+                preferredDate: document.getElementById('preferredDate').value || null,
+                preferredTime: document.getElementById('preferredTime').value || null,
+                notes: document.getElementById('notes').value,
+                patientName: document.getElementById('patientName').value
             };
 
-            card.addEventListener('click', selectTherapist);
-            card.addEventListener('keydown', (event) => {
-                if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    selectTherapist();
-                }
+            const response = await fetch('/api/appointment-requests', {
+                method: 'POST',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
             });
-        });
 
-        document.getElementById('book-therapist').addEventListener('click', () => {
-            bookingForm.classList.add('visible');
-            bookingSuccess.classList.remove('visible');
-        });
+            if (!response.ok) {
+                successMessage.textContent = 'Request could not be submitted. Please try again.';
+                successMessage.style.display = 'block';
+                return;
+            }
 
-        bookingForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const appointments = JSON.parse(localStorage.getItem('carebridgeAppointments') || '[]');
-            appointments.push({
-                doctor: selectedTherapist.name,
-                service: selectedTherapist.role.split(' &middot; ')[1],
-                name: 'New Patient',
-                date: document.getElementById('booking-date').value,
-                time: document.getElementById('booking-time').value
-            });
-            localStorage.setItem('carebridgeAppointments', JSON.stringify(appointments));
+            successMessage.textContent = 'Appointment request submitted successfully.';
+            successMessage.style.display = 'block';
             bookingForm.reset();
-            bookingForm.classList.remove('visible');
-            bookingSuccess.classList.add('visible');
+            setTimeout(() => {
+                bookingModal.classList.remove('show');
+                successMessage.style.display = 'none';
+            }, 1500);
         });
 
-        document.getElementById('modal-close').addEventListener('click', closeModal);
-        document.getElementById('close-details').addEventListener('click', closeModal);
-        modal.addEventListener('click', (event) => {
-            if (event.target === modal) closeModal();
-        });
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') closeModal();
-        });
+        async function loadDoctors() {
+            const allowed = await ensurePatientAccess();
+            if (!allowed) return;
+            const response = await fetch('/api/doctors', { credentials: 'include' });
+            if (!response.ok) return;
+            const doctors = await response.json();
+            renderDoctors(doctors);
+        }
+
+        loadDoctors();
     </script>
-
 </body>
 </html>
