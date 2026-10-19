@@ -28,6 +28,12 @@
         .therapist-image { height: 220px; background-image: linear-gradient(135deg, rgba(131,153,88,0.8), rgba(211,150,131,0.72)), url('image2.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 28px; font-weight: 700; }
         .therapist-card-content { padding: 18px 18px 0; }
         .therapist-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 7px; }
+        .therapist-profile { display: none; margin: 14px 0; padding: 14px; background: rgba(255,255,255,0.72); border-left: 3px solid var(--secondary); }
+        .therapist-profile.is-open { display: block; }
+        .therapist-profile h4 { font-family: 'Playfair Display', serif; font-size: 17px; margin: 10px 0 4px; }
+        .therapist-profile h4:first-child { margin-top: 0; }
+        .therapist-profile p { font-size: 12px; line-height: 1.6; }
+        .review-note { color: #557060; font-style: italic; }
         .therapist-specialty { color: #557060; font-size: 13px; margin-bottom: 10px; }
         .therapist-description { font-size: 13px; line-height: 1.7; margin-bottom: 12px; }
         .therapist-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
@@ -140,17 +146,42 @@
             });
 
             doctorGrid.innerHTML = orderedDoctors.map((doctor) => `
-                <article class="therapist-card">
+                <article class="therapist-card" data-profile-toggle tabindex="0" aria-label="${doctor.name} profile. Click to show education and reviews." aria-expanded="false">
                     <div class="therapist-image">${doctor.name.split(' ').slice(-1)[0].charAt(0)}${doctor.name.split(' ').slice(-1)[0].slice(1,2).toLowerCase()}</div>
                     <div class="therapist-card-content">
                         <h3>${doctor.name}</h3>
                         <div class="therapist-specialty">${doctor.specialty}</div>
                         <p class="therapist-description">${doctor.description}</p>
                         <div class="therapist-tags">${(doctor.tags || []).slice(0, 3).map(tag => `<span>${tag}</span>`).join('')}</div>
+                        <section id="doctor-profile-${doctor.doctorId}" class="therapist-profile" aria-label="${doctor.name} education and reviews">
+                            <h4>Education</h4>
+                            <p>${doctor.qualifications || 'Qualifications not provided.'}</p>
+                            <h4>Patient Reviews</h4>
+                            <p>“The recovery plan was clear and easy to follow.” <span class="review-note">— Sample review</span></p>
+                            <p>“I felt supported while working on my mobility.” <span class="review-note">— Sample review</span></p>
+                        </section>
                         <button type="button" class="book-btn" data-doctor-id="${doctor.doctorId}">Book Appointment</button>
                     </div>
                 </article>
             `).join('');
+
+            document.querySelectorAll('[data-profile-toggle]').forEach((card) => {
+                const toggleProfile = () => {
+                    const profile = card.querySelector('.therapist-profile');
+                    const isOpen = profile.classList.toggle('is-open');
+                    card.setAttribute('aria-expanded', String(isOpen));
+                };
+
+                card.addEventListener('click', (event) => {
+                    if (!event.target.closest('.book-btn')) toggleProfile();
+                });
+                card.addEventListener('keydown', (event) => {
+                    if (event.target === card && (event.key === 'Enter' || event.key === ' ')) {
+                        event.preventDefault();
+                        toggleProfile();
+                    }
+                });
+            });
 
             document.querySelectorAll('.book-btn').forEach((button) => {
                 button.addEventListener('click', async () => {
